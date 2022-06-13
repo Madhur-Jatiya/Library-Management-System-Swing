@@ -3,7 +3,7 @@
     <type>org.netbeans.modules.java.j2seproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
-            <name>library_managment_system</name>
+            <name>github-library_managment_system</name>
             <source-roots>
                 <root id="src.dir"/>
             </source-roots>

@@ -34,7 +34,7 @@ public class View_issue_books extends javax.swing.JFrame {
     }
 
     private void viewIssueBooks() throws SQLException {
-        prepareStatement = connection.prepareStatement("select * from issue join books on issue.books_id = books.id where return_book = ?");
+        prepareStatement = connection.prepareStatement("select * from issue join books on issue.books_id = books.id join librarian on issue.librarian_id = librarian.id where return_book = ?");
         prepareStatement.setString(1, "issue");
         ResultSet rs = prepareStatement.executeQuery();
         DefaultTableModel tm = (DefaultTableModel) table.getModel();
@@ -43,7 +43,7 @@ public class View_issue_books extends javax.swing.JFrame {
         table.getTableHeader().setFont(new Font("Arial", Font.BOLD, 25));
         tm.setRowCount(0);
         while (rs.next()) {
-            Object o[] = {rs.getString("books.name"), rs.getString("issue.student_name"), rs.getString("issue.student_contact"), rs.getString("issue.date_time")};
+            Object o[] = {rs.getString("books.name"), rs.getString("issue.student_name"), rs.getString("issue.student_contact"), rs.getString("issue.date_time"), rs.getString("librarian.name")};
             tm.addRow(o);
         }
     }
@@ -70,11 +70,11 @@ public class View_issue_books extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Book Name", "Student Name", "Student Contact", "Date"
+                "Book Name", "Student Name", "Student Contact", "Date", "Issued By"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
